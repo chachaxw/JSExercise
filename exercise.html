@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="Chacha">
+  <meta name="Keywords" content="15小时形象设计">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Html5上传照片</title>
+  <link type="text/css"  rel="stylesheet" href="css/reset.css">
+  <link type="text/css"  rel="stylesheet" href="css/commonstyle.css">
+  <style type="text/css">
+	  .top-bar {height: 72px; line-height: 72px; background: #777777}
+      .image-box {width: 200px; height: 200px; line-height: 200px;}
+      .image-box img{width: auto; max-width: 200px; height: 200px;  object-fit: cover}
+	  .wrapper{display: inline-block; width: 200px; height: 280px; margin-top: 100px; background: rgb(245,245,245); font-size: 1rem; box-shadow: #999999 0 1px 3px;}
+	  .btn{width: 200px; height: 80px; margin-top:-21px; font-size: 1.5rem; background: #cccccc; }
+	  #uploadFile{display: inline-block; width: 200px; height: 200px; margin-top: -225px; opacity: 0; z-index: -999}
+  </style>
+  <script type="text/javascript">
+	/*  //获取dom id
+	  function $(idName){
+		  return document.getElementById(idName);
+	  }
+	  //获取数据的url地址
+	  function createObjectURL(blob)
+	  {
+		  if(window.URL){
+			  return window.URL.createObjectURL(blob);
+		  }else if(window.webkitURL){
+			  return window.webkitURL.createObjectURL(blob);
+		  }else{
+			  return null;
+		  }
+	  }
+      //创建ajax对象
+      function createXMLHTTPObject(){
+          var xmlHttp;
+          try{
+              xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+          }catch(e){
+              try{
+                  xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+              }catch(e){
+                  xmlHttp = false;
+              }
+          }
+          if(!xmlHttp && typeof XMLHttpRequest != 'undefined'){
+              try{
+                  xmlHttp = new XMLHttpRequest();
+              }catch(e){
+                  xmlHttp = false;
+              }
+          }
+          if(!xmlHttp && window.createRequest){
+              try{
+                  xmlHttp = window.createRequest();
+              }catch(e){
+                  xmlHttp = false;
+              }
+          }
+          return xmlHttp;
+      }
+	  //检测文件
+	  function checkFile(){
+		  var file = $('uploadFile').files[0];
+		  //判断文件是否存在
+		  if(file === null || file === undefined){
+			  alert("单击选择要上传的照片!");
+			  return false;
+		  }
+		  //检测文件类型是否是图片文件
+		  if(file.type.indexOf('image') === -1){
+			  alert("请选择图片文件！");
+			  return false;
+		  }
+		  //检测文件大小是否满足要求
+		  var fileSize = Math.floor(file.size/1024);
+
+		  if(fileSize > 5000){
+			  alert("上传文件不能超过5M！");
+			  return false;
+		  }
+	  }
+      //监听图片URL地址更改
+      addEventListener($('uploadFile'), "change", function(){
+          checkFile();
+      });
+
+      //监听上传按钮点击事件
+      addEventListener($('btnConfirm'), "click", function(){
+          if(checkFile()){
+              try{
+                 //执行上传操作 var xhr = createXMLHTTPObject();
+                  $('maskLayer').style.display='block';
+                  xhr.open("post","/uploadPhoto.action",true);
+                  xhr.setRequestHeader("X-Request-With","XMLHttpRequest");
+                  xhr.onreadystatechange = function(){
+                      if(xhr.readyState == 4){
+                          var flag = xhr.responseText;
+                          if(flag == "success"){
+                              alert("图片上传成功");
+                          }else{
+                              alert("图片上传失败");
+                          }
+                          $('maskLayer').style.display='none';
+                      }
+                  };
+                  //表单数据
+                  var fileData = new FormData();
+                  fileData.append("myPhoto",$('uploadFile').files[0]);
+                  xhr.send(fileData);
+              }catch(e){
+				  console.log(e);
+			  }
+          }
+      }) */
+    function $(idName){
+        return document.getElementById(idName);
+    }
+    function processFile(e){
+        var file = $('uploadFile').files[0];
+
+        if(file){
+            var reader = new FileReader();
+
+            reader.onload = function(event){
+                var txt = event.target.result;
+                var img = document.createElement('img');
+
+                img.src = txt;
+                $('images').appendChild(img);
+                $('images').getElementsByTagName('p')[0].style.display = "none";
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+    function contentLoaded(){
+        $('uploadFile').addEventListener('change', processFile, false);
+    }
+    window.addEventListener('DOMContentLoaded', contentLoaded, false);
+  </script>
+ </head>
+ <body>
+ <!--container start-->
+ <div class="container">
+	<div class="top-bar">
+		<div class="title">html5上传照片</div>
+	</div>
+	<div class="content-box">
+		<div id="image-box" class="wrapper">
+			<div id="images" class="image-box"><p>单击选择要上传的照片</p></div>
+			<input id="uploadFile" type="file" name="myPhoto" accept="image/*" multiple>
+			<button id="btnConfirm" class="btn" value="">确认上传</button>
+		</div>
+	</div>
+</div><!--container end-->
+<script>
+ //javascript面试题练习
+    //闭包的应用
+     /*function Foo() {
+         var i = 0;
+         return function() {
+             console.log(i++);
+         }
+     }
+     var f1 = Foo(), f2 = Foo();
+     f1();
+     f1();
+     f2();*/
+
+    //给Array本地对象增加一个原型方法，它的用途是删除数组条目中重复的条目(可能有多个)，返回值是一个仅包含被删除的重复条目的新数组
+    /*Array.prototype.delRepeat = function(){
+        var arr=this, _arr=new Array();
+
+        for(var i in arr){
+            if(i == 'delRepeat')
+                continue;
+            if(_arr.length == 0 ) _arr.push(arr[i]);
+        for(var j=0; j<_arr.length; j++){
+            if(arr[i] == _arr[j] ){
+                break;
+            }
+            if(j > _arr.length-2) _arr.push(arr[i]);
+        }
+        }
+        return _arr;
+    };
+    var arr1=[1,2,1,1,3,4,3,5,6,7,2], arr2;
+    arr2=arr1.delRepeat();
+    console.log(arr2);*/
+
+    //使mySort()能使传入的参数按照从小到大的顺序显示出来
+    //方法一：插入排序法
+    /* function mySort(){
+        var arr=new Array();
+        arr[0] = arguments[0];
+
+    } */
+
+    //方法二：用sort方法排序
+    /*function mySort(){
+        var tags = new Array();  //使用数组作为参数存储容器
+        for(var i=0; i<arguments.length; i++){
+            tags.push(arguments[i]);
+        }
+        tags.sort(function sortNum(a,b){
+            return a - b;
+        });
+        return tags;
+    }
+    var result=mySort(2,5,1,7,3,9,2);
+    console.log(result);*/
+
+    /* javascript 练习题
+     var a="undefined";
+     var b="false";
+     var c="";
+     function assert(aVar){
+         if(aVar)
+             alert(true);
+         else
+             alert(false);
+     }
+     assert(a);
+     assert(b);
+     assert(c); */
+
+    /* 正则表达式练习 */
+    /*var reg = /^\d*\*[^\d]*[\w]{6}$/, // 解释：/^表示字符串开始的位置，\d*表示零次或多次数字，\*表示转义字符*，[^\d]*表示零次或多次非数字，[\w]{}表示所有字符6次，$/表示输入字符串结尾的位置
+        reg1 = '123*abcABCD_89' && '***abcABCD_89';
+    console.log(reg.test(reg1));*/
+
+ </script>
+ </body>
+</html>
