@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+body{background-image:url(bg.jpg);
+}
+.calender{
+	      width:250px;
+          height:400px;
+		  margin-left:20px;
+		  margin-top:45px;
+		  padding-left:62px;
+		  padding-top:32px;
+		  background-image:url(iphone.png);
+		  background-size:90% 100%;
+		  background-repeat:no-repeat;
+		  text-shadow:#000 0px 0px 2px;}
+.active{background-color:#933;-webkit-box-shadow:3px 2px 5px #000;-moz-box-shadow:3px 2px 5px #000;}
+.text{
+      width:151px;
+      height:93px;
+	  border:none;
+	  margin-left:48px;
+	  margin-top:2px;
+	  font-style:oblique;
+	  font-weight:bold;
+	  color:#0CF;
+	  background-color:#333;float:left;
+	  text-shadow:#000 3px 0px 2px;
+	  -webkit-box-shadow:0 0 5px #000;
+	  -moz-box-shadow:0 0 5px #000;}
+li{
+    width:45px;
+	height:45px;
+    margin-left:8px;
+	margin-top:4px;
+	background-color:#333;
+	font-size:20px;
+    float:left;
+	list-style-type:none;
+	text-align:center;}
+h1{
+    font-style:italic;
+    color:#900;}	
+h3{
+	margin-top:4px;
+	margin-left:6px;
+	color:#C30;}	  	  
+

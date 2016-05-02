@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>js多物体运动框架-多个div淡入淡出</title>
+  <style>
+  .div{width:120px;height:120px;border:red solid 2px;margin:30px;background-color:blue;float:left;filter:alpha(opacity:40);opacity:0.4;}
+  </style>
+  <script>
+  window.onload=function()
+  {
+	  var oDiv=document.getElementsByTagName('div');
+
+	  for(var i=0;i<oDiv.length;i++)
+	  {
+		 oDiv[i].alpha=40;
+	     oDiv[i].onmouseover=function()
+		 {
+		     startChange(this,100);
+		 }; 
+	     oDiv[i].onmouseout=function()
+		 {
+		     startChange(this,40);
+		 }; 
+	  }
+  };
+  
+  var timer=null;
+  
+  function startChange(obj,iTarget){
+	  clearInterval(obj.timer);
+	  obj.timer=setInterval(function(){
+	      var speed=(iTarget-obj.alpha)/6;
+		  speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+		  if(obj.alpha==iTarget)
+		  {
+		      clearInterval(obj.timer);
+		  }
+		  else
+		  {
+		      obj.alpha+=speed;
+			  obj.style.filter='alpha(opacity:'+obj.alpha+')';
+			  obj.style.opacity=obj.alpha/100;
+		  }
+	  },30);
+  };//多物体运动框架中，定时器作为目标属性，参数的传递包括物体和目标值。注意所有的东西都不能共用。
+  </script>
+ </head>
+ <body>
+ <div class="div"></div>
+ <div class="div"></div>
+ <div class="div"></div>
+ <div class="div"></div>
+ </body>
+</html>

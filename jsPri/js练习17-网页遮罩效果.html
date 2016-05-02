@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页遮罩效果</title>
+<style>
+*{padding:0;margin:0}
+body{background:#3E3E3E;color:#DDD;}
+/*登录框样式*/
+#btn{width:40px;height:40px;border-radius:4px;padding:0;background:#963;border:none;position:relative;left:50px;top:20px;font-size:1em; font-family:'Microsoft YaHei';color:#000;transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;text-align:center;text-decoration:none;display:block}
+#btn:hover,#header:hover{background:#2E5855;color:#FFF;}
+#btn:focus{outline:#963 dashed 2px}
+
+#loginbox{width:300px;height:388px;background:none;display:none;position:fixed;left:50%;margin-left:-150px;z-index:999}
+
+#header{width:300px;height:60px;background:#5C807E;border:none;border-bottom:rgba(255,255,255,0.6) 1px solid;border-radius:10px 10px 0 0;text-align:center;font:22px 'Microsoft YaHei';color:#000;transition:all 0.3s ease-in;-moz-transition:all 0.3s ease-in;-webkit-transition:all 0.3s ease-in;}
+
+#login{width:250px;height:239px;background-color:rgba(255,255,255,0.2);color:#FFF;padding-left:25px;padding-right:25px;padding-top:28px;font:'Arial';text-align:left;}
+#login input{width:250px;height:60px;border-radius: 10px;border:none;font-size:20px;background-color:rgba(255,255,255,0.6);margin-bottom:20px}
+#login input:focus{border:#fff 1px solid;background-color:rgba(255,255,255,0.8);}
+
+#or{width:300px;height:60px;border-top:rgba(255,255,255,0.5) 1px solid;border-radius:0 0 10px 10px;background:rgba(206,173,204,1);position:relative}
+#or ul{margin:15px 32px}
+#or ul li{float:left;margin-left:30px;list-style:none}
+
+.youtube{width:38px;height:36px;display:block;background:url(images/youtube-icon.jpg);transition:background 0.3s;-moz-transition:background 0.3s;-webkit-transition:background 0.3s;}
+.youtube:hover{background: url(images/youtube.jpg)} 
+
+.google{width:38px;height:36px;display:block;background:url(images/google-icon.jpg);transition:background 0.3s;-moz-transition:background 0.3s;-webkit-transition:background 0.3s}
+.google:hover{background:url(images/google.jpg)}
+
+.facebook{width:38px;height:35px;display:block;background: url(images/facebook-icon.jpg);transition:background 0.3s;-moz-transition:background 0.3s;-webkit-transition:background 0.3s}
+.facebook:hover{background:url(images/facebook.jpg)}
+
+/*遮罩层样式*/
+#block{background:rgba(0,0,0,0.6) repeat;display:none;position:fixed;left:0;top:0;}
+</style>
+<script src="Base.js" type="text/javascript"></script>
+<script type="text/javascript">
+window.onload=function(){	
+	$().getId('btn').click(
+		function(){
+			$().getId('loginbox').css('display','block');
+			$().getId('block').lock();	
+		}
+	);
+	$().getId('header').click(
+		function(){
+			$().getId('loginbox').css('display','none');
+			$().getId('block').unlock();	
+		}
+	);
+}
+</script>
+</head>
+<body>
+<div>
+   <button id="btn" class="btn">登录</button>
+   <div id="loginbox">
+        <button id="header" title="登录" type="submit">
+        Login
+        </button>
+        <form id="login" method="post">
+            Account
+            <input type="email" title="账户"></input>
+            Password
+            <input type="password" tittle="密码"></input>
+                 <hr style="background:#987cb9;width:105px;size:1;margin-top:10px;float:left" />&nbsp;Or<hr style="background:#987cb9;width:105px;size:1;margin-top:10px;float:right;" />
+        </form>
+        <div id="or">
+            <ul>
+                <li><a href="http://www.youtube.com" title="youtube"><span class="youtube"></></a></li>
+                <li><a href="http://www.google.com" title="google"><span class="google"></></a></li>
+                <li><a href="http://www.facebook.com" title="facebook"><span class="facebook"></></a></li>
+             </ul>
+        </div>
+   </div>
+</div>
+<div style="margin:100px;background:#2E5855;padding:30px">
+    <h2>div层遮罩成效原理实现</h2>
+    <p>我们都知道windows窗口是由a-z序的层结构显示的.同样网页也是这种层次结构.style中z-index(通常称z序)属性决定层的位置.默认 z-index:-1是最底层.通常最底层是我们的页面的主要构架和内容.如果我们要使用自定义的窗口/对话框,则应该z-index>-1.但是这样我们设计的一个非模态的对话框/窗口,焦点可以被自定义窗口以外的元素获焦.其实我们理解窗口是以"层"为结构的道理之后,很容易可以想到在网页最底层与自定义窗口框之间再插入一个"层",使这个"层"完全笼罩在最底层之上而居于对话框之下,所为"完全笼罩"也就是大小能遮住最底层的内容(其目的是为了让最底层不能获焦),为了能让"层"起作用,必须设置其背景颜色,否则层无效.这样页面的最底层就被笼罩层屏蔽了,由于自定义窗口层在笼罩层之上,所以现在页面中只能看到笼罩层和自定义窗口层了,这样最底层都看不见了又怎么获焦呢.嘿嘿.可能我们使用自定义窗口的同时还希望能看到最底层内容,这时我们可以将笼罩层设置成透明的,这样最底层的内容就显示出来了,只是在自定义窗口返回前最底层无法获焦，至此,我们的模态对话框完成了。
+    <h3>步骤：</h3>
+    <p>
+1.首先.做好自定义的窗口/对话框层.并将其隐藏style.display=none<br/>
+2.制作笼罩层.插入div,设置其宽/高大于最底层宽/高,完全笼罩在最底层上面,设置其透明度alpha(opacity=0)（IE使用filter: alpha(opacity=60)）,并将其隐藏style.display=none.<br/>
+3.调用对话框时同时将两个层同时显示出来<br/>
+4.关闭对话框时同时将两个层隐藏</p>
+</p>
+</div>
+<div id="block"></div>
+</body>
+</html>

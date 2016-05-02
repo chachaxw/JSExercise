@@ -1,0 +1,31 @@
+<!doctype html><head>
+  <meta charset="UTF-8">
+  <title>js运动框架-缓冲运动</title>
+ <style>
+ #div{width:100px;height:100px;background-color:black;position:absolute;top:50px;left:0px;filter:alpha(opacity:80);opacity:0.8;}
+ #div1{width:2px;height:120px;background:black;left:300px;top:40px;position:absolute;}
+ #btn {BORDER-RIGHT: #0CF 2px solid; PADDING-RIGHT: 2px; BORDER-TOP: #0CF 2px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#cecfde); BORDER-LEFT: #0CF 2px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #0CF 2px solid;}
+ </style>
+ <script>
+ var timer=null;
+ function startMove(){
+    var oDiv=document.getElementById('div');
+	clearInterval(timer);//此处的作用是关闭先前的定时器
+    timer=setInterval(function(){
+	    var speed=(300-oDiv.offsetLeft)/10;
+		//speed=Math.ceil(speed);speed向上取整，例如，299.5向上取整后为300.Math.floor()是向下取整。
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		
+		oDiv.style.left=oDiv.offsetLeft+speed+'px';
+	},30);
+ }//运动框架：1.在运动开始的时候，关闭已有定时器；2.把运动和停止隔开（if/else）.
+ </script>
+ </head>
+ <body>
+<button id="btn" onclick="startMove()">开始运动</button>
+<div id="div">
+</div>
+<div id="div1">
+</div>
+ </body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Html5地理定位</title>
+<script>
+function getLocation(){
+	//检查浏览器是否支持地理位置定位
+	if(navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(displayLocation,displayError);
+	}
+	else
+	{
+	    document.getElementById("locationDate").innerHTML="对不起，您浏览器不支持地理定位";
+	}
+	function displayLocation(position){
+	    	 var latitude=position.coords.latitude;//纬度
+		     var longitude=position.coords.longitude;//经度
+			 var displayText="纬度："+latitude+"  "+"经度："+longitude;
+			 document.getElementById("locationDate").innerHTML=displayText;
+	}  
+	function displayError(error){
+	         var locationElement=document.getElementById("locationDate");	
+			 locationElement.innerHTML="产生了错误";
+	}
+
+}
+</script>
+</head>
+
+<body>
+    <input type="button" value="获取当前位置" onClick="getLocation()">
+    <div id="locationDate"></div>
+</body>
+</html>

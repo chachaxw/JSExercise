@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>js多物体运动框架-多个div运动</title>
+  <style>
+  .div{width:110px;height:110px;margin:10px;background:#06F;float:left;color:red;}
+  .div1{width:110px;height:110px;margin:10px;background:#06F;float:left;color:red;filter:alpha(opacity:40);opacity:0.4;}
+  </style>
+  <script>
+  window.onload=function()
+  {
+      var oDiv=document.getElementsByTagName('div');
+
+	      oDiv[0].onmouseover=function()
+	      {
+		       startMove(this,'height',300);
+	      };
+	      oDiv[0].onmouseout=function()
+	      {
+		       startMove(this,'height',110);
+	      };
+
+	      oDiv[1].onmouseover=function()
+	      {
+		       startMove(this,'width',300);
+	      };
+	      oDiv[1].onmouseout=function()
+	      {
+		       startMove(this,'width',110);
+	      };
+	     
+	      oDiv[2].onmouseover=function()
+	      {
+		       startMove(this,'font-size',36);
+	      };
+	      oDiv[2].onmouseout=function()
+	      {
+		       startMove(this,'font-size',20);
+	      };
+
+	      oDiv[3].onmouseover=function()
+	      {
+		       startMove(this,'opacity',100);
+	      };
+	      oDiv[3].onmouseout=function()
+	      {
+		       startMove(this,'opacity',40);
+	      };
+  };
+  function getStyle(obj,name)
+  {
+	  if(obj.currentStyle)
+	  { 
+	      return obj.currentStyle[name];
+	  }
+      else
+	  {
+	      return getComputedStyle(obj,false)[name];
+	  }
+  };//用来获取行间样式。
+  var timer=null;
+  
+  function startMove(obj,attr,iTarget){
+      clearInterval(obj.timer);
+	  obj.timer=setInterval(function(){
+		  var cur=0;
+		  if (attr=='opacity')
+		  {
+			  cur=Math.round(parseFloat(getStyle(obj,attr))*100);//Math.round的作用是四舍五入。
+		  }
+		  else
+		  {
+		      cur=parseInt(getStyle(obj,attr));   
+		  }
+	      var speed=(iTarget-cur)/6;
+		  speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+		  if (cur==iTarget)
+		  {
+			  clearInterval(obj.timer);
+		  }
+		  else
+		  {
+			  if(attr=='opacity')
+			  {
+			       obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+				   obj.style.opacity=(cur+speed)/100;
+			  }
+			  else
+			  {
+                  obj.style[attr]=cur+speed+'px';
+			  }
+		  }
+     },30);
+  }
+  </script>
+ </head>
+ <body>
+ <div class="div"><h2>变高</h2></div> 
+ <div class="div"><h2>变宽</h2></div> 
+ <div class="div"><h3>变大</h3></div> 
+ <div class="div1"><h3>淡入淡出</h3></div> 
+ </body>
+</html>

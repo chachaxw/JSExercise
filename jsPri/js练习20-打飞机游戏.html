@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+* { margin:0;padding:0;list-style:none }
+#sky { 
+          overflow:hidden;
+          position:relative;
+          width:330px; 
+          height:540px; 
+          background:#c3c8c9; 
+          margin: 30px auto;  
+          
+}
+#plane {
+          position:absolute; 
+          width:66px;
+          height:80px; 
+          background:#0C6; 
+          top:450px;
+          left:140px; 
+          background: url(images/my.gif) 
+}
+#startGame {
+          width:250px;
+          height:40px;
+          line-height:40px;
+          box-shadow: 1px 1px 2px;
+          border-radius:15px; position:absolute; 
+          top:250px; left:40px; text-align:center; 
+          font-family:'微软雅黑'; 
+          font-weight:bold;
+          cursor:pointer; 
+          background:#666
+}
+#startGame:hover { 
+          background:#fff 
+}
+#score { 
+          height:40px;
+          width:100%; 
+          text-indent:20px; 
+          line-height:40px;
+  }
+.foe { 
+          height:24px;
+          width:34px;
+          position:absolute;
+          top:0; 
+          z-index:1;
+          background: url(images/enemy1_fly_1.png));
+}
+.foe1 { 
+      width:46px;
+          height:60px;
+          background: url(images/enemy3_fly_1.png);
+          position:absolute;
+          top:0;
+          z-index:2;
+}
+.attack { 
+          height:10px;
+          width:6px;
+          background:#900; 
+          position:absolute; 
+}
+</style>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+ <div id="sky">
+          <div id = 'score'>
+               分数： <strong>0</strong>
+          </div> 
+          <div id="plane">
+          </div>
+          <div id="startGame">
+               开始游戏
+          </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+  <script>
+  window.onload=function()
+  {
+	  var oBtn=document.getElementById('button');
+
+	  oBtn.onclick=function()
+	  {
+		  //创建Ajax对象
+		  if (window.XMLHttpRequest)
+		  {
+			  var oAjax=new XMLHttpRequest();
+		  }
+		  else
+		  {
+			  var oAjax=new ActiveXObject("Microsoft.XMLHttp");
+		  }
+		  //连接服务器 open(方法,文件名,异步传输)
+		  oAjax.open();
+
+		  //发送请求
+		  oAjax.send();
+
+		  //接收返回
+		  oAjax.onreadystatechange=function()
+		  {
+			  //oAjax.readyState 判断浏览器和服务器进行到哪一步。
+              if (oAjax.readyState==4)
+              {
+                     if (oAjax.status==200)//代表连接成功
+                  { 
+					  fnsucc(oAjax.responseText);
+                  }
+				  else
+				  {
+					  alert('失败:'+oAjax.status);
+				  }
+              }
+		  };
+	  };
+  }
+  </script>
+ </head>
+ <body> 
+ <button id="button" value="Ajax">Ajax</button>
+ </body>
+</html>
