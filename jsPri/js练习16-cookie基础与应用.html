@@ -4,33 +4,45 @@
   <meta charset="UTF-8">
   <title>cookie基础与应用</title>
  <script>
- function setCookie(name, value, iDay)
- {
-     var oDate=new Date();
-     oDate.setDate(oDate.getDate()+iDay);//现在的日期加上天数即为过期时间。
+ function setCookie(name, value, expireTime) {
+   let expireDate = new Date();
+   
+   if (expireTime) {
+     expireDate = new Date(+new Date() + expireTime);
+   }
 
- 	 document.cookie=name+'='+value+';expires='+oDate;
- };//建立cookie
- function getCookie(name)
- {
-     var arr=document.cookie.split('; ');
-	 for(var i=0;i<arr.length;i++)
-	 {
-	     var arr2=arr[i].split('=');
-		 if (arr2[0]==name)
-	     {
-			 return arr2[1];
-         }
-	 }
-     return '';
- };//获取cookie
- function removeCookie()
- {
-     setCookie(name,1,-1);//日期设置为-1，表示已过期
+   document.cookie = name + "=" + escape(value) + ((expireTime === null) ? "" : ";expires=" + expireDate.toUTCString());
  }
- setCookie('username', 'chacha', 10);
- setCookie('password', '123456', 10);
+	 
+ function getCookie(name: string): string | null {
+   if (document.cookie.length === 0) {
+     return null;
+   }
+
+   let start = document.cookie.indexOf(`${name}=`);
+
+   if (start === -1) {
+     return null;
+   }
+
+   start = start + name.length + 1;
+   let end = document.cookie.indexOf(';', start);
+
+   if (end === -1) {
+     end = document.cookie.length;
+   }
+
+   return unescape(document.cookie.substring(start, end));
+ }
+ function removeCookie() {
+   setCookie(name,1,-1);//日期设置为-1，表示已过期
+ }
+
+ setCookie('username', 'chacha', 1000 * 60);
+ setCookie('password', '123456', 1000 * 60);
+
  alert(document.cookie);
+
  </script>
  </head>
  <body>
