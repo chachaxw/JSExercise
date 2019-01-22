@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>js练习1-鼠标提示框</title>
+	<style>
+		#id1 {
+			width: 100px;
+			height: 50px;
+			border: 2px solid blue;
+			display: none;
+			background:#930;
+		}
+		#id2 {
+			width: 200px;
+			height: 200px;
+			background: #333;
+			border:#0CF 2px double;
+			display: block;
+			opacity: 0.4;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			var oDiv = document.getElementById('id2');
+			oDiv.onmouseover = function(){
+				startMove(100);
+			};
+			oDiv.onmouseout = function(){
+				startMove(40);
+			};
+		};
+
+		var alpha = 40;
+		var timer = null;
+
+		function startMove(iTarget){
+			var oDiv = document.getElementById('id2');
+
+			clearInterval(timer);
+			timer = setInterval(function() {
+				var speed = 0;
+
+				if (alpha < iTarget){
+					speed = 10;
+				}
+				else {
+					speed = -10;
+				}
+				if (alpha === iTarget) {
+					clearInterval(timer);
+				} else{
+					alpha += speed;
+					oDiv.style.filter = 'alpha(opacity=' + alpha + ')';
+					oDiv.style.opacity = alpha / 100;
+				}
+			}, 30);
+		}
+</script>
+</head>
+
+<body>
+	<input
+		type="checkbox" 
+		onMouseOver="document.getElementById('id1').style.display='block'" 
+		onMouseOut="document.getElementById('id1').style.display='none'"
+	/>
+	<div id="id1">为了你的信息安全。。。</div>
+	<div id="id"><img src="../../Base 02.jpg" id="id2" /></div>
+</body>
+
+</html>

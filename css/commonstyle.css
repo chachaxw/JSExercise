@@ -1,34 +1,124 @@
-body {box-sizing: border-box; -webkit-box-sizing: border-box; background: rgb(242,242,242); text-align: center; color: rgb(154,154,154); font-size: 0.75rem;}
+body {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: rgb(242,242,242);
+    text-align: center;
+    color: rgb(154,154,154);
+    font-size: 0.75rem;
+}
 
 /*top bar style */
-.top-bar { background: rgb(239,196,160); height: 44px; width: 100%; color: rgb(255,255,255); position: fixed; top:0; left: 0; line-height:44px; font-size: 1rem; z-index: 99;}
-.top-bar a{color: rgb(255,255,255)}
-.top-bar .title {display: block; margin: auto 50px; height: 44px; text-align: center; font-size: 1.1rem;}
-.back-btn {float: left; margin: auto 8px;}
+.top-bar {
+    background: rgb(239,196,160);
+    height: 44px; width: 100%;
+    color: rgb(255,255,255);
+    position: fixed;
+    top:0;
+    left: 0;
+    line-height:44px;
+    font-size: 1rem;
+    z-index: 99;
+}
+.top-bar a{
+    color: rgb(255,255,255)
+}
+.top-bar .title {
+    display: block;
+    margin: auto 50px;
+    height: 44px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.back-btn {
+    float: left;
+    margin: auto 8px;
+}
 
-.top-bar .active {border-bottom: 4px rgb(238,152,82) solid;}
-.top-bar .active a {color: rgb(238,152,82);}
+.top-bar .active {
+    border-bottom: 4px rgb(238,152,82) solid;
+}
+.top-bar .active a {
+    color: rgb(238,152,82);
+}
 
 /*nav bar style */
-.nav-bar {background: rgb(255,255,255); height: 38px; width: 100%; padding-top: 5px; padding-bottom: 5px; border-top: 1px  rgb(215,215,215) solid; position: fixed; bottom: 0; z-index: 99;}
-.nav-bar li {display: inline-block; float: left; width: 20%; line-height: 1; height: 48px;}
-.nav-bar li span {display: block; margin-bottom: 4px;}
-.nav-bar .active a {color: rgb(238,152,82)}
+.nav-bar {
+    background: rgb(255,255,255);
+    height: 38px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px  rgb(215,215,215) solid;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+}
+.nav-bar li {
+    display: inline-block;
+    float: left;
+    width: 20%;
+    line-height: 1;
+    height: 48px;
+}
+.nav-bar li span {
+    display: block;
+    margin-bottom: 4px;
+}
+.nav-bar .active a {
+    color: rgb(238,152,82)
+}
 
-.content-box {padding-top: 44px; padding-bottom: 49px;}
-.content-box .img{ background-image: url("../images/image.png"); background-position: center; background-repeat: no-repeat;}
-.add-btn {display: inline-block; width: 48px; height: 48px; text-shadow: rgba(0,0,0,0.25) 0 1px 1px; margin-top: -4px;}
-.add-btn a{line-height: 48px;}
-.add-btn i{font-size: 44px; color: rgb(238,152,82);}
+.content-box {
+    padding-top: 72px;
+    padding-bottom: 49px;
+}
+.content-box .img{
+    background-image: url("../images/image.png"); 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.add-btn {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    text-shadow: rgba(0,0,0,0.25) 0 1px 1px;
+    margin-top: -4px;
+}
+.add-btn a{
+    line-height: 48px;
+}
+.add-btn i{
+    font-size: 44px; color: rgb(238,152,82);
+}
 
 /* load more button style */
-.load-btn {text-align: center;}
-.load-btn a{display: block; margin: 8px 12px; height: 44px; background: rgb(250,250,250); box-shadow: rgba(0,0,0,0.08) 0 1px 2px; line-height: 44px; font-size: 0.9rem;}
+.load-btn {
+    text-align: center;
+}
+.load-btn a {
+    display: block;
+    margin: 8px 12px;
+    height: 44px;
+    background: rgb(250,250,250);
+    box-shadow: rgba(0,0,0,0.08) 0 1px 2px;
+    line-height: 44px;
+    font-size: 0.9rem;
+}
 
 /* page style */
-.page-content {margin: 8px 12px;}
-.page-content p {width: 100%; margin: 8px auto; font-size: 0.9rem; line-height: 1.6; word-break: break-all}
-.page-content img {max-width: 100%;}
+.page-content {
+    margin: 8px 12px;
+}
+.page-content p {
+    width: 100%;
+    margin: 8px auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    word-break: break-all
+}
+.page-content img {
+    max-width: 100%;
+}
 
 /* icon font style */
 @font-face {font-family: 'iconfont';
@@ -46,6 +136,14 @@ body {box-sizing: border-box; -webkit-box-sizing: border-box; background: rgb(24
 }
 
 /* empty style */
-.empty {margin-top: 100px; color: rgb(215,215,215); font-size: 0.9rem}
-.empty i{font-size: 72px;}
-.empty p{padding: 10px 20%;}
+.empty {
+    margin-top: 100px;
+    color: rgb(215,215,215);
+    font-size: 0.9rem;
+}
+.empty i{
+    font-size: 72px;
+}
+.empty p{
+    padding: 10px 20%;
+}

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Chacha">
+    <meta name="Keywords" content="15小时形象设计">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Html5原生上传照片</title>
+    <link type="text/css" rel="stylesheet" href="../css/reset.css">
+    <link type="text/css" rel="stylesheet" href="../css/commonstyle.css">
+    <style type="text/css">
+        .top-bar {
+            height: 72px;
+            line-height: 72px;
+            background: #777777
+        }
+
+        .image-box {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-box img {
+            width: auto;
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover
+        }
+
+        .wrapper {
+            position: relative;
+            width: 200px;
+            height: 280px;
+            margin: 100px auto;
+            font-size: 1rem;
+            background: rgb(245, 245, 245);
+            box-shadow: #999999 0 1px 3px;
+        }
+
+        .btn {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            height: 80px;
+            margin-top: -21px;
+            font-size: 1.5rem;
+            background: #cccccc;
+        }
+
+        #uploadFile {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!--container start-->
+    <div class="container">
+        <div class="top-bar">
+            <div class="title">html5上传照片</div>
+        </div>
+        <div class="content-box">
+            <div id="image-box" class="wrapper">
+                <div id="images" class="image-box">
+                    <p>单击选择要上传的照片</p>
+                </div>
+                <input id="uploadFile" type="file" name="myPhoto" accept="image/*" multiple>
+                <button id="btnConfirm" class="btn" value="">确认上传</button>
+            </div>
+        </div>
+    </div>
+    <!--container end-->
+</body>
+
+<script type="text/javascript">
+    //获取dom id
+    function $(idName) {
+        return document.getElementById(idName);
+    }
+
+    //获取数据的url地址
+    function createObjectURL(blob) {
+        if (window.URL) {
+            return window.URL.createObjectURL(blob);
+        } else if (window.webkitURL) {
+            return window.webkitURL.createObjectURL(blob);
+        } else {
+            return null;
+        }
+    }
+
+    //创建ajax对象
+    function createXMLHTTPObject() {
+        var xmlHttp;
+        try {
+            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                xmlHttp = false;
+            }
+        }
+        if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch (e) {
+                xmlHttp = false;
+            }
+        }
+        if (!xmlHttp && window.createRequest) {
+            try {
+                xmlHttp = window.createRequest();
+            } catch (e) {
+                xmlHttp = false;
+            }
+        }
+        return xmlHttp;
+    }
+
+    //检测文件
+    function checkFile() {
+        var file = $('uploadFile').files[0];
+        //判断文件是否存在
+        if (file === null || file === undefined) {
+            alert("单击选择要上传的照片!");
+            return false;
+        }
+        //检测文件类型是否是图片文件
+        if (file.type.indexOf('image') === -1) {
+            alert("请选择图片文件！");
+            return false;
+        }
+        //检测文件大小是否满足要求
+        var fileSize = Math.floor(file.size / 1024);
+
+        if (fileSize > 5000) {
+            alert("上传文件不能超过5M！");
+            return false;
+        }
+    }
+
+    //监听图片URL地址更改
+    $('uploadFile').addEventListener("change", function () {
+        checkFile();
+    });
+
+    //监听上传按钮点击事件
+    $('btnConfirm').addEventListener("click", function () {
+        if (checkFile()) {
+            try {
+                //执行上传操作 
+                var xhr = createXMLHTTPObject();
+                $('maskLayer').style.display = 'block';
+                xhr.open("post", "/uploadPhoto.action", true);
+                xhr.setRequestHeader("X-Request-With", "XMLHttpRequest");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        var flag = xhr.responseText;
+                        if (flag === "success") {
+                            alert("图片上传成功");
+                        } else {
+                            alert("图片上传失败");
+                        }
+                        $('maskLayer').style.display = 'none';
+                    }
+                };
+                //表单数据
+                var fileData = new FormData();
+                fileData.append("myPhoto", $('uploadFile').files[0]);
+                xhr.send(fileData);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    });
+
+    function processFile(e) {
+        var file = $('uploadFile').files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var txt = event.target.result;
+                var img = document.createElement('img');
+                var element = $('images').getElementsByTagName('img')[0];
+
+                img.src = txt;
+
+                if (element) {
+                    $('images').removeChild(element);
+                }
+                $('images').appendChild(img);
+                $('images').getElementsByTagName('p')[0].style.display = "none";
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function contentLoaded() {
+        $('uploadFile').addEventListener('change', processFile, false);
+    }
+
+    window.addEventListener('DOMContentLoaded', contentLoaded, false);
+</script>
+</html>
