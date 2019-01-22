@@ -7,6 +7,11 @@ body {
     font-size: 0.75rem;
 }
 
+.container {
+    height: 100vh;
+    overflow: hidden;
+}
+
 /*top bar style */
 .top-bar {
     background: rgb(239,196,160);
@@ -69,8 +74,13 @@ body {
 }
 
 .content-box {
-    padding-top: 72px;
-    padding-bottom: 49px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 72px);
+    margin-top: 72px;
+    overflow: hidden;
 }
 .content-box .img{
     background-image: url("../images/image.png"); 
