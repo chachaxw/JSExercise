@@ -1,89 +1,99 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>js事件-基础</title>
-  <style>
-  #div1 {width:100px;height:100px;background:#066;position:absolute;text-align:center;}
-  #div2 {width:100px;height:100px;background:#333;position:absolute;text-align:center;top:120px;}
-  #div3 {width:100px;height:100px;background:#09F;position:absolute;text-align:center;top:240px;cursor:crosshair;}
-  </style>
-  <script>
-  window.onload=function()
-  {
-       var oDiv=document.getElementById('div3');
-	   var disX=0;
-	   var disY=0;
-       
-       oDiv.onmousedown=function(ev)
-	   {
-	      var oEvent=ev||event;
 
-		  disX=oEvent.clientX-oDiv.offsetLeft;
-		  disY=oEvent.clientY-oDiv.offsetTop;
-	      if(oDiv.setCapture)//在IE浏览器下
-		  {
-	          oDiv.onmousemove=mouseMove;
-              oDiv.onmouseup=mouseUp;
-			  oDiv.setCapture();//事件捕获
-          }
-		  else//在chrome.FF等浏览器下
-		  {
-		      document.onmousemove=mouseMove;
-			  document.onmouseup=mouseUp;
-		  }
-		  oDiv.setCapture();//事件捕获
-          return false;//阻止浏览器默认行为，防止在火狐下出现bug.
-		  function mouseMove(ev)
-          {  
-              var oEvent=ev||event;
-              var l=oEvent.clientX-disX;
-			  var t=oEvent.clientY-disY;
-			  
-			  if(l<0)
-			  {
-				 l=0;
-			  }
-			  else if(l>document.documentElement.clientWidth-oDiv.offsetWidth)
-			  {   
-				 l=document.documentElement.clientWidth-oDiv.offsetWidth;
-			  }
-			  if(t<0)
-			  {
-				 t=0;  
-			  }
-			  else if(t>document.documentElement.clientHeight-oDiv.offsetHeight)
-			  {
-				  document.documentElement.clientHeight-oDiv.offsetHeight;
-			  }
-	          oDiv.style.left=l+'px';
-	          oDiv.style.top=t+'px';
-          };
-          function mouseUp(ev)
-          {
-	          this.onmousemove=null;
-              this.onmouseup=null;
-	          if(oDiv.releaseCapture)
-	          oDiv.releaseCapture();
-          };
-	   };
-};//完美拖拽
-  document.onkeydown=function(ev)
-  {
-       var oEvent=ev||event;
-	   var oDiv=document.getElementById('div1');
-	   if (oEvent.keyCode==37)
-	   {
-           oDiv.style.left=oDiv.offsetLeft-10+'px';
-		   if(oDiv.offsetLeft<=0)
-		      oDiv.style.left=8+'px';
-	   }
-	   else if (oEvent.keyCode==39)
-	   {
-		   oDiv.style.left=oDiv.offsetLeft+10+'px';
-	   }
-  };//键盘事件
- /* document.onmousemove=function(ev)
+<head>
+	<meta charset="UTF-8">
+	<title>js事件-基础</title>
+	<style>
+		#div1 {
+			width: 100px;
+			height: 100px;
+			background: #066;
+			position: absolute;
+			text-align: center;
+		}
+
+		#div2 {
+			width: 100px;
+			height: 100px;
+			background: #333;
+			position: absolute;
+			text-align: center;
+			top: 120px;
+		}
+
+		#div3 {
+			width: 100px;
+			height: 100px;
+			background: #09F;
+			position: absolute;
+			text-align: center;
+			top: 240px;
+			cursor: crosshair;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var oDiv = document.getElementById('div3');
+			var disX = 0;
+			var disY = 0;
+
+			oDiv.onmousedown = function (ev) {
+				var oEvent = ev || event;
+
+				disX = oEvent.clientX - oDiv.offsetLeft;
+				disY = oEvent.clientY - oDiv.offsetTop;
+				if (oDiv.setCapture) //在IE浏览器下
+				{
+					oDiv.onmousemove = mouseMove;
+					oDiv.onmouseup = mouseUp;
+					oDiv.setCapture(); //事件捕获
+				} else //在chrome.FF等浏览器下
+				{
+					document.onmousemove = mouseMove;
+					document.onmouseup = mouseUp;
+				}
+				oDiv.setCapture(); //事件捕获
+				return false; //阻止浏览器默认行为，防止在火狐下出现bug.
+				function mouseMove(ev) {
+					var oEvent = ev || event;
+					var l = oEvent.clientX - disX;
+					var t = oEvent.clientY - disY;
+
+					if (l < 0) {
+						l = 0;
+					} else if (l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+						l = document.documentElement.clientWidth - oDiv.offsetWidth;
+					}
+					if (t < 0) {
+						t = 0;
+					} else if (t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+						document.documentElement.clientHeight - oDiv.offsetHeight;
+					}
+					oDiv.style.left = l + 'px';
+					oDiv.style.top = t + 'px';
+				};
+
+				function mouseUp(ev) {
+					this.onmousemove = null;
+					this.onmouseup = null;
+					if (oDiv.releaseCapture)
+						oDiv.releaseCapture();
+				};
+			};
+		}; //完美拖拽
+		document.onkeydown = function (ev) {
+			var oEvent = ev || event;
+			var oDiv = document.getElementById('div1');
+			if (oEvent.keyCode == 37) {
+				oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+				if (oDiv.offsetLeft <= 0)
+					oDiv.style.left = 8 + 'px';
+			} else if (oEvent.keyCode == 39) {
+				oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+			}
+		}; //键盘事件
+		/* document.onmousemove=function(ev)
   {
 	  var oEvent=ev||event;
 	  var oDiv=document.getElementById('div2');
@@ -97,11 +107,13 @@
 	  var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
 	  return {x:ev.clientX+scrollLeft,y:ev.clientY+scrollTop};
   };//获取鼠标位置的函数 */
-  </script>
- </head>
- <body background="../网页设计/设计1/images/bgimage.jpg">
- <div id="div1">键盘事件</div>
- <div id="div2">鼠标事件</div>
- <div id="div3">拖拽事件</div>
- </body>
+	</script>
+</head>
+
+<body background="../网页设计/设计1/images/bgimage.jpg">
+	<div id="div1">键盘事件</div>
+	<div id="div2">鼠标事件</div>
+	<div id="div3">拖拽事件</div>
+</body>
+
 </html>

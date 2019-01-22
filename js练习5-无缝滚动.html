@@ -1,51 +1,74 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>无缝滚动</title>
-  <style>
-  *{margin:0px;padding:0px;}/*初始化*/
-  #div{width:616px;height:125px;border:2px #993300 groove;background-color:#0cF;margin:100px auto;position:relative;overflow:hidden;}
-  #div ul{position:absolute;left:0px;top:0px;}
-  #div ul li{float:left;list-style:none;padding-left:4px;}
-  </style>
-  <script>
-  window.onload=function()
-  {
-      var oDiv=document.getElementById('div');
-	  var oUl=oDiv.getElementsByTagName('ul')[0];
-	  var aLi=oUl.getElementsByTagName('li');
-	  
-	  oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;
-      oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
-	  function move()
-	  {
-		  if(oUl.offsetLeft<-oUl.offsetWidth/2)
-		     oUl.style.left='0';
-		  if(oUl.offsetLeft>0)
-		     oUl.style.left=-oUl.offsetWidth/2+'px';
-	      oUl.style.left=oUl.offsetLeft+2+'px';//offsetLeft用来获取元素的左边距
-		  
-	  }
-	  var timer=setInterval(move,30);//定时器时间为30毫秒
-	  oDiv.onmouseover=function()
-	  {
-		  clearInterval(timer);
-	  };
-	  oDiv.onmouseout=function()
-	  {
-		  timer=setInterval(move,30);
-	  };
-  };
-  </script>
- </head>
- <body>
-<div id="div">
-    <ul>
-	   <li><img src="images/HAPPY2.bmp" width="200px" height="125px"></img></li>
-       <li><img src="images/HAPPY4.bmp" width="200px" height="125px"></img></li>
-	   <li><img src="images/HAPPY5.bmp" width="200px" height="125px"></img></li>
-	</ul>
-</div>
- </body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		/*初始化*/
+		#div {
+			width: 616px;
+			height: 125px;
+			border: 2px #993300 groove;
+			background-color: #0cF;
+			margin: 100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+
+		#div ul {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+
+		#div ul li {
+			float: left;
+			list-style: none;
+			padding-left: 4px;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var oDiv = document.getElementById('div');
+			var oUl = oDiv.getElementsByTagName('ul')[0];
+			var aLi = oUl.getElementsByTagName('li');
+
+			oUl.innerHTML = oUl.innerHTML + oUl.innerHTML;
+			oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px';
+
+			function move() {
+				if (oUl.offsetLeft < -oUl.offsetWidth / 2)
+					oUl.style.left = '0';
+				if (oUl.offsetLeft > 0)
+					oUl.style.left = -oUl.offsetWidth / 2 + 'px';
+				oUl.style.left = oUl.offsetLeft + 2 + 'px'; //offsetLeft用来获取元素的左边距
+
+			}
+			var timer = setInterval(move, 30); //定时器时间为30毫秒
+			oDiv.onmouseover = function () {
+				clearInterval(timer);
+			};
+			oDiv.onmouseout = function () {
+				timer = setInterval(move, 30);
+			};
+		};
+	</script>
+</head>
+
+<body>
+	<div id="div">
+		<ul>
+			<li><img src="images/HAPPY2.bmp" width="200px" height="125px"></img></li>
+			<li><img src="images/HAPPY4.bmp" width="200px" height="125px"></img></li>
+			<li><img src="images/HAPPY5.bmp" width="200px" height="125px"></img></li>
+		</ul>
+	</div>
+</body>
+
 </html>

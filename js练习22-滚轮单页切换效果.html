@@ -1,155 +1,196 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>滚轮切换页面</title>
-<script type="text/javascript" src="../jsLib/JqueryPractice/Jquery hover折叠效果/jquery-2.0.0.js">
-</script>
-<style type="text/css">
-abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video
-{
-        display: block;
-}
-*
-{
-        margin: 0px;
-        padding: 0px;
-}
-html
-{
-        overflow-y:hidden;
-		text-align:center
-}
-section
-{
-        width:100%;
-}
-li{list-style:none;}
-.page1,.page3
-{
-        background: #00FFFF;
-}
-.page2,.page4
-{
-        background: #EF4649;
-        color: white;
-
-}
-.active
-{
-        color: #D43C3F;
-}
-</style>
-<!--[if it IE9]>
-<script type="text/javascript">
-     (function(){
-          if(!0)
-             return;    
-          var e="abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
-          for(var i=0;i<e.length;i++)
-          {
-              document.creatElement(e[i]);
-          }
-     
-})()
-</script>
-<![End if]-->
-<script type="text/javascript">
-
-function scrollPages(obj){
-	var num,
-	    detail,
-		scrollTop=$('html,body').scrollTop(),
-		activeCss='.'+obj.activeCss,
-		li;
-	//添加选项元素
-	$(obj.sectionContain).wrapAll("<div class='wrap'></div>");
-    $('.wrap').css('position','relative');
-	$('.wrap').append("<ul class='item'></ul>");  
-    $('.item').css({position:'fixed',right:'30px',top:'40%',background:'white',opacity:'0.8',border:'1px #FFFFFF solid'});
-     
-    for(var i=0;i<$(obj.sectionContain).length;i++)
-	{
-		$('.item').append("<li>"+(i+1)+"</li>");
-    }
-    //初始化选项
-	$('.item li:first').addClass(obj.activeCss);
-	//获取当前元素的index
-	li=$('.item li');
-	$(window).resize(function(){
-	     $(obj.sectionContain).css('height',document.documentElement.clientHeight+'px');//重新获取可视高度并重新设置section高度
-	     $('html,body').animate({scrollTop:document.documentElement.clientHeight*$(activeCss).index()},0);//保证当前section的左上角和浏览器可视高度的左上角对齐。
-	 });
-	 
-	 
-	 $(obj.sectionContain).css('height',document.documentElement.clientHeight+'px'); //获取浏览器可视区域高度并设置section的高度
-	 
-	 li.each(function(index){
-		 $(this).click(function(){
-			  if($(activeCss).index()==index)
-		           return;  
-		      $(this).siblings().removeClass(obj.activeCss);//移除所有的class
-		      $(this).addClass(obj.activeCss);//当前li添加active
-			  $('html,body').stop().animate({scrollTop:$(obj.sectionContain).eq(index).offset().top},1000);//整体页面滚动到目标section位置 
-		 });
-	 });
-	 
-	 //mouseWheel事件
-	 var scrollFunc=function(e){
-		 var e=e||window.event,
-		     num=$(activeCss).index(),
-		     detail=e.wheelDelta?e.wheelDelta:(-e.detail);
-	         //alert(detail);火狐向下滚动是正值，其他浏览器向下是正值。
-			 
-		if(detail>0)
-		{
-		     if($('.active').index()==0)	
-			      return;
-			 else
-			 {
-				  li.removeClass(obj.activeCss);
-				  li.eq(num-1).addClass(obj.activeCss);
-				  $('html,body').stop().animate({scrollTop:$(obj.sectionContain).eq(num-1).offset().top},1000);
-				 
-			 }
-			 
+	<meta charset="utf-8">
+	<title>滚轮切换页面</title>
+	<script type="text/javascript" src="./lib/jquery.min.js">
+	</script>
+	<style type="text/css">
+		abbr,
+		article,
+		aside,
+		audio,
+		canvas,
+		datalist,
+		details,
+		dialog,
+		eventsource,
+		figure,
+		footer,
+		header,
+		hgroup,
+		mark,
+		menu,
+		meter,
+		nav,
+		output,
+		progress,
+		section,
+		time,
+		video {
+			display: block;
 		}
-		else if(detail<0)
-		{ 
-			 if($('.active').index()==3)  
-			      return;
-			  else
-			  {
-				  li.removeClass(obj.activeCss); 
-				  li.eq(num+1).addClass(obj.activeCss);
-				  $('html,body').stop().animate({scrollTop:$(obj.sectionContain).eq(num+1).offset().top},1000);
-			  }
-		 }
-			 
-	 }
-	 
-	 //绑定onmouseWheel事件
-	 if(document.addEventListener())
-	 {
-		 document.addEventListener('DOMMouseScroll',scrollFunc,false);
-	 }
-	 document.onmousewheel=scrollFunc;
-	 
-}
-$(function(){
-     scrollPages({
-		 sectionContain:"section",
-		 activeCss:"active"
-	 });
-});
 
-</script>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		html {
+			overflow-y: hidden;
+			text-align: center
+		}
+
+		section {
+			width: 100%;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		.page1,
+		.page3 {
+			background: #00FFFF;
+		}
+
+		.page2,
+		.page4 {
+			background: #EF4649;
+			color: white;
+
+		}
+
+		.active {
+			color: #D43C3F;
+		}
+	</style>
+	<!--[if it IE9]>
+	<script type="text/javascript">
+			(function(){
+						if(!0)
+							return;    
+						var e="abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+						for(var i=0;i<e.length;i++)
+						{
+								document.creatElement(e[i]);
+						}
+			
+	})()
+	</script>
+	<![End if]-->
+	<script type="text/javascript">
+		function scrollPages(obj) {
+			var num,
+				detail,
+				scrollTop = $('html,body').scrollTop(),
+				activeCss = '.' + obj.activeCss,
+				li;
+			//添加选项元素
+			$(obj.sectionContain).wrapAll("<div class='wrap'></div>");
+			$('.wrap').css('position', 'relative');
+			$('.wrap').append("<ul class='item'></ul>");
+			$('.item').css({
+				position: 'fixed',
+				right: '30px',
+				top: '40%',
+				background: 'white',
+				opacity: '0.8',
+				border: '1px #FFFFFF solid'
+			});
+
+			for (var i = 0; i < $(obj.sectionContain).length; i++) {
+				$('.item').append("<li>" + (i + 1) + "</li>");
+			}
+			//初始化选项
+			$('.item li:first').addClass(obj.activeCss);
+			//获取当前元素的index
+			li = $('.item li');
+			$(window).resize(function () {
+				$(obj.sectionContain).css('height', document.documentElement.clientHeight + 'px'); //重新获取可视高度并重新设置section高度
+				$('html,body').animate({
+					scrollTop: document.documentElement.clientHeight * $(activeCss).index()
+				}, 0); //保证当前section的左上角和浏览器可视高度的左上角对齐。
+			});
+
+
+			$(obj.sectionContain).css('height', document.documentElement.clientHeight + 'px'); //获取浏览器可视区域高度并设置section的高度
+
+			li.each(function (index) {
+				$(this).click(function () {
+					if ($(activeCss).index() == index)
+						return;
+					$(this).siblings().removeClass(obj.activeCss); //移除所有的class
+					$(this).addClass(obj.activeCss); //当前li添加active
+					$('html,body').stop().animate({
+						scrollTop: $(obj.sectionContain).eq(index).offset().top
+					}, 1000); //整体页面滚动到目标section位置 
+				});
+			});
+
+			//mouseWheel事件
+			var scrollFunc = function (e) {
+				var e = e || window.event,
+					num = $(activeCss).index(),
+					detail = e.wheelDelta ? e.wheelDelta : (-e.detail);
+				//alert(detail);火狐向下滚动是正值，其他浏览器向下是正值。
+
+				if (detail > 0) {
+					if ($('.active').index() == 0)
+						return;
+					else {
+						li.removeClass(obj.activeCss);
+						li.eq(num - 1).addClass(obj.activeCss);
+						$('html,body').stop().animate({
+							scrollTop: $(obj.sectionContain).eq(num - 1).offset().top
+						}, 1000);
+
+					}
+
+				} else if (detail < 0) {
+					if ($('.active').index() == 3)
+						return;
+					else {
+						li.removeClass(obj.activeCss);
+						li.eq(num + 1).addClass(obj.activeCss);
+						$('html,body').stop().animate({
+							scrollTop: $(obj.sectionContain).eq(num + 1).offset().top
+						}, 1000);
+					}
+				}
+
+			}
+
+			//绑定onmouseWheel事件
+			if (document.addEventListener()) {
+				document.addEventListener('DOMMouseScroll', scrollFunc, false);
+			}
+			document.onmousewheel = scrollFunc;
+
+		}
+		$(function () {
+			scrollPages({
+				sectionContain: "section",
+				activeCss: "active"
+			});
+		});
+	</script>
 </head>
 
 <body>
-    <section class="page1"><h1>page1</h1></section>
-    <section class="page2"><h1>page2</h1></section>
-    <section class="page3"><h1>page3</h1></section>
-    <section class="page4"><h1>page4</h1></section>
+	<section class="page1">
+		<h1>page1</h1>
+	</section>
+	<section class="page2">
+		<h1>page2</h1>
+	</section>
+	<section class="page3">
+		<h1>page3</h1>
+	</section>
+	<section class="page4">
+		<h1>page4</h1>
+	</section>
 </body>
+
 </html>

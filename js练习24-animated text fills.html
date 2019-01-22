@@ -1,468 +1,386 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>(Animated) Text Fills</title>
-<style type="text/css">
-.text {
-  font:6.5em/1 Impact;
-  text-transform: uppercase;
-  text-align:center;
-}
+  <meta charset="utf-8">
+  <title>(Animated) Text Fills</title>
+  <style type="text/css">
+    .text {
+      font: 6.5em/1 Impact;
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-.box-with-text{text-align:center;font-size:20em;font-weight:bold;background: -webkit-linear-gradient(crimson 50%, white 50%);background-size:30% 50px;-webkit-animation: stripes 2s linear infinite;animation: stripes 2s linear infinite;-webkit-text-fill-color:transparent;-webkit-background-clip:text}
-@-webkit-keyframes stripes {
-  100% {
-    background-position: 0 -50px;
-  }
-}
+    .box-with-text {
+      text-align: center;
+      font-size: 20em;
+      font-weight: bold;
+      background: -webkit-linear-gradient(crimson 50%, white 50%);
+      background-size: 30% 50px;
+      -webkit-animation: stripes 2s linear infinite;
+      animation: stripes 2s linear infinite;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text
+    }
 
-@keyframes stripes {
-  100% {
-    background-position: 0 -50px;
-  }
-}
+    @-webkit-keyframes stripes {
+      100% {
+        background-position: 0 -50px;
+      }
+    }
 
-.g-spot circle:nth-child(5n + 1) {
-  fill: #1D4259;
-}
+    @keyframes stripes {
+      100% {
+        background-position: 0 -50px;
+      }
+    }
 
-.g-spot circle:nth-child(5n + 2) {
-  fill: #0A7373;
-}
+    .g-spot circle:nth-child(5n + 1) {
+      fill: #1D4259;
+    }
 
-.g-spot circle:nth-child(5n + 3) {
-  fill: #30BF7C;
-}
+    .g-spot circle:nth-child(5n + 2) {
+      fill: #0A7373;
+    }
 
-.g-spot circle:nth-child(5n + 4) {
-  fill: #BAF266;
-}
+    .g-spot circle:nth-child(5n + 3) {
+      fill: #30BF7C;
+    }
 
-.g-spot circle:nth-child(5n + 5) {
-  fill: #EEF272;
-}
-/*****Fill Stars*****/
-.g-stars polygon {
-  stroke-width: 0;
-  -webkit-animation: stroke 2s infinite;
-  animation: stroke 2s infinite;
-}
+    .g-spot circle:nth-child(5n + 4) {
+      fill: #BAF266;
+    }
 
-.g-stars polygon:nth-child(5n + 1) {
-  fill: #551F7A;
-  stroke: #551F7A;
-  animation-delay: -0.4s;
-}
+    .g-spot circle:nth-child(5n + 5) {
+      fill: #EEF272;
+    }
 
-.g-stars polygon:nth-child(5n + 2) {
-  fill: #BA2799;
-  stroke: #BA2799;
-  animation-delay: -0.8s;
-}
+    /*****Fill Stars*****/
+    .g-stars polygon {
+      stroke-width: 0;
+      -webkit-animation: stroke 2s infinite;
+      animation: stroke 2s infinite;
+    }
 
-.g-stars polygon:nth-child(5n + 3) {
-  fill: #D9587A;
-  stroke: #D9587A;
-  animation-delay: -1.2s;
-}
+    .g-stars polygon:nth-child(5n + 1) {
+      fill: #551F7A;
+      stroke: #551F7A;
+      animation-delay: -0.4s;
+    }
 
-.g-stars polygon:nth-child(5n + 4) {
-  fill: #FFDD00;
-  stroke: #FFDD00;
-  animation-delay: -1.6s;
-}
+    .g-stars polygon:nth-child(5n + 2) {
+      fill: #BA2799;
+      stroke: #BA2799;
+      animation-delay: -0.8s;
+    }
 
-.g-stars polygon:nth-child(5n + 5) {
-  fill: #FFF3A1;
-  stroke: #FFF3A1;
-  animation-delay: -2s;
-}
+    .g-stars polygon:nth-child(5n + 3) {
+      fill: #D9587A;
+      stroke: #D9587A;
+      animation-delay: -1.2s;
+    }
 
-/* Change stroke-width within animation */
-@keyframes stroke {
-  50% {
-    stroke-width: 6;
-  }
-}
-@-webkit-keyframes stroke{
-	50%{
-		stroke-width: 6}	
-	}	
-}
+    .g-stars polygon:nth-child(5n + 4) {
+      fill: #FFDD00;
+      stroke: #FFDD00;
+      animation-delay: -1.6s;
+    }
 
-/* Colorize & animate pattern */
-.g-spots ellipse {
-  stroke-width: 0;
-  stroke-opacity: 1;
-  -webkit-animation: stroke_spot 1.5s infinite;
-  animation: stroke_spot 1.5s infinite;
-}
+    .g-stars polygon:nth-child(5n + 5) {
+      fill: #FFF3A1;
+      stroke: #FFF3A1;
+      animation-delay: -2s;
+    }
 
-.g-spots ellipse:nth-child(5n + 1) {
-  fill: #3F0B1B;
-  stroke: #3F0B1B;
-  -webkit-animation-delay: -0.3s;
-  animation-delay: -0.3s;
-}
+    /* Change stroke-width within animation */
+    @keyframes stroke {
+      50% {
+        stroke-width: 6;
+      }
+    }
 
-.g-spots ellipse:nth-child(5n + 2) {
-  fill: #7A1631;
-  stroke: #7A1631;
-  -webkit-animation-delay: -0.6s;
-  animation-delay: -0.6s;
-}
+    @-webkit-keyframes stroke {
+      50% {
+        stroke-width: 6
+      }
+    }
+    }
 
-.g-spots ellipse:nth-child(5n + 3) {
-  fill: #CF423C;
-  stroke: #CF423C;
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
+    /* Colorize & animate pattern */
+    .g-spots ellipse {
+      stroke-width: 0;
+      stroke-opacity: 1;
+      -webkit-animation: stroke_spot 1.5s infinite;
+      animation: stroke_spot 1.5s infinite;
+    }
 
-.g-spots ellipse:nth-child(5n + 4) {
-  fill: #FC7D49;
-  stroke: #FC7D49;
-  -webkit-animation-delay: -1.2s;
-  animation-delay: -1.2s;
-}
+    .g-spots ellipse:nth-child(5n + 1) {
+      fill: #3F0B1B;
+      stroke: #3F0B1B;
+      -webkit-animation-delay: -0.3s;
+      animation-delay: -0.3s;
+    }
 
-.g-spots ellipse:nth-child(5n + 5) {
-  fill: #FFD462;
-  stroke: #FFD462;
-  -webkit-animation-delay: -1.5s;
-  animation-delay: -1.5s;
-}
+    .g-spots ellipse:nth-child(5n + 2) {
+      fill: #7A1631;
+      stroke: #7A1631;
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
+    }
 
-/* Change stroke-width inside animation */
-@-webkit-keyframes stroke_spot {
-  50% {
-    stroke-width: 10;
-    stroke-opacity: .5;
-  }
-}
+    .g-spots ellipse:nth-child(5n + 3) {
+      fill: #CF423C;
+      stroke: #CF423C;
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
 
-@keyframes stroke_spot {
-  50% {
-    stroke-width: 10;
-    stroke-opacity: .5;
-  }
-}
+    .g-spots ellipse:nth-child(5n + 4) {
+      fill: #FC7D49;
+      stroke: #FC7D49;
+      -webkit-animation-delay: -1.2s;
+      animation-delay: -1.2s;
+    }
 
-</style>
+    .g-spots ellipse:nth-child(5n + 5) {
+      fill: #FFD462;
+      stroke: #FFD462;
+      -webkit-animation-delay: -1.5s;
+      animation-delay: -1.5s;
+    }
+
+    /* Change stroke-width inside animation */
+    @-webkit-keyframes stroke_spot {
+      50% {
+        stroke-width: 10;
+        stroke-opacity: .5;
+      }
+    }
+
+    @keyframes stroke_spot {
+      50% {
+        stroke-width: 10;
+        stroke-opacity: .5;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
     <div class="box-with-text">TEXT</div>
     <div>
-        <svg viewBox="0 0 300 150">
-            <defs>
-                <linearGradient id="gr-simple" x1="0" y1="0" x2="100%" y2="100%">
-                    <stop stop-color="hsl(50, 100%, 70%)" offset="10%"/>
-                    <stop stop-color="hsl(320, 100%, 50%)" offset="90%"/>
-                </linearGradient>
-            </defs>
-            <text text-anchor="middle"
-                  x="50%"
-                  y="50%"
-                  dy=".35em"
-                  class="text"
-                  fill="url(#gr-simple)"
-                  >
-              TEXT
-            </text>
-        </svg>
+      <svg viewBox="0 0 300 150">
+        <defs>
+          <linearGradient id="gr-simple" x1="0" y1="0" x2="100%" y2="100%">
+            <stop stop-color="hsl(50, 100%, 70%)" offset="10%" />
+            <stop stop-color="hsl(320, 100%, 50%)" offset="90%" />
+          </linearGradient>
+        </defs>
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="url(#gr-simple)">
+          TEXT
+        </text>
+      </svg>
     </div>
     <div>
-    	<svg viewBox="0 0 300 150">
-            <defs>
-				<!-- Gradient -->
-				<radialGradient id="gr-radial"
-					cx="50%" cy="50%" r="70%">
-				
-					<!-- Animation for radius of gradient -->
-					<animate attributeName="r"
-							 values="0%;150%;100%;0%"
-							 dur="5s" repeatCount="indefinite" />
-				
-					<!-- Animation for colors of stop-color -->
-					<stop stop-color="#FFF" offset="0">
-					  <animate attributeName="stop-color"
-							 values="#333;#FFF;#FFF;#333"
-							 dur="5s" repeatCount="indefinite" />
-					</stop>
-					<stop stop-color="rgba(55,55,55,0)" offset="100%"/>
-				</radialGradient>
-			</defs>
-			<text text-anchor="middle"
-					x="50%"
-					y="50%"
-					dy=".35em"
-					class="text"
-					fill="url(#gr-radial)"
-					>
-				Text
-			</text>
-		</svg>
-    </div>
-    <div>
-    	<svg viewBox="0 0 300 150">
-			<defs>
-				<pattern
-					id="p-spots"
-					viewBox="0 0 100 100"
-					patternUnits="userSpaceOnUse"
-					width="30" height="30"
-					x="5" y="5"
-					>
-					<g class="g-spot">
-						<circle r="5" cx="10" cy="10"/>
-						<circle r="6" cx="30" cy="30"/>
-						<circle r="4" cx="50" cy="10"/>
-						<circle r="8" cx="70" cy="30"/>
-					
-						<circle r="10" cx="50" cy="50"/>
-						<circle r="5" cx="10" cy="50"/>
-						<circle r="7" cx="30" cy="70"/>
-						<circle r="8" cx="70" cy="70"/>
-					</g>
-				</pattern>
-			</defs>
-			<text text-anchor="middle"
-					x="50%"
-					y="50%"
-					dy=".35em"
-					class="text"
-					fill="url(#p-spots)"
-					stroke-width="1"
-  					stroke="#1D4259"
-					>
-				Text
-			</text>
-		</svg>
-    </div>
-    <div>
-    	<svg viewBox="0 0 300 150">
-			<defs>
-				<pattern
-					id="p-stars"
-					viewBox="0 0 120 120"
-					patternUnits="userSpaceOnUse"
-					width="30" height="30"
-					x="5" y="5"
-					>
-					<g class="g-stars">
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
-               transform="
-                          scale(.9,.9)"        
-               ></polygon>
+      <svg viewBox="0 0 300 150">
+        <defs>
+          <!-- Gradient -->
+          <radialGradient id="gr-radial" cx="50%" cy="50%" r="70%">
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+            <!-- Animation for radius of gradient -->
+            <animate attributeName="r" values="0%;150%;100%;0%" dur="5s" repeatCount="indefinite" />
+
+            <!-- Animation for colors of stop-color -->
+            <stop stop-color="#FFF" offset="0">
+              <animate attributeName="stop-color" values="#333;#FFF;#FFF;#333" dur="5s" repeatCount="indefinite" />
+            </stop>
+            <stop stop-color="rgba(55,55,55,0)" offset="100%" />
+          </radialGradient>
+        </defs>
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="url(#gr-radial)">
+          Text
+        </text>
+      </svg>
+    </div>
+    <div>
+      <svg viewBox="0 0 300 150">
+        <defs>
+          <pattern id="p-spots" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="30" height="30" x="5" y="5">
+            <g class="g-spot">
+              <circle r="5" cx="10" cy="10" />
+              <circle r="6" cx="30" cy="30" />
+              <circle r="4" cx="50" cy="10" />
+              <circle r="8" cx="70" cy="30" />
+
+              <circle r="10" cx="50" cy="50" />
+              <circle r="5" cx="10" cy="50" />
+              <circle r="7" cx="30" cy="70" />
+              <circle r="8" cx="70" cy="70" />
+            </g>
+          </pattern>
+        </defs>
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="url(#p-spots)" stroke-width="1" stroke="#1D4259">
+          Text
+        </text>
+      </svg>
+    </div>
+    <div>
+      <svg viewBox="0 0 300 150">
+        <defs>
+          <pattern id="p-stars" viewBox="0 0 120 120" patternUnits="userSpaceOnUse" width="30" height="30" x="5" y="5">
+            <g class="g-stars">
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
+                transform="
+                          scale(.9,.9)"></polygon>
+
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(30,30)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(90,30)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(0,60)
-                          scale(.9,.9)" 
-               ></polygon>
+                          scale(.9,.9)"></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549 "
+                transform="
                           translate(60,0)
                           scale(.9,.9)  
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(60,60)
                           scale(.9,.9)  
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(90,90)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(30,90)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(120,60)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(60,120)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(0,120)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(-30,90)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-      <!-- Hack to make shapes full  -->
-      <polygon></polygon>
-      <polygon></polygon>
-      <polygon></polygon>
+              <!-- Hack to make shapes full  -->
+              <polygon></polygon>
+              <polygon></polygon>
+              <polygon></polygon>
 
-      <polygon
-               points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
-               transform="
+              <polygon points="15 22.5 6.18322122 27.1352549 7.86707613 17.3176275 0.734152256 10.3647451 10.5916106 8.93237254 15 0 19.4083894 8.93237254 29.2658477 10.3647451 22.1329239 17.3176275 23.8167788 27.1352549"
+                transform="
                           translate(120,0)
                           scale(.9,.9)
-                          " 
-               ></polygon>
+                          "></polygon>
 
-    </g>
+            </g>
 
-				</pattern>
-			</defs>
-			<text text-anchor="middle"
-					x="50%"
-					y="50%"
-					dy=".35em"
-					class="text"
-					fill="url(#p-stars)"
-					stroke-width="1"
-  					stroke="#1D4259"
-					>
-				Text
-			</text>
-		</svg>
+          </pattern>
+        </defs>
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="url(#p-stars)" stroke-width="1" stroke="#1D4259">
+          Text
+        </text>
+      </svg>
     </div>
     <div>
-    	<svg viewBox="0 0 300 150">
-			<defs>
-				<pattern
-					id="p-fire"
-					viewBox="30 100 185 200"
-					patternUnits="userSpaceOnUse"
-					width="108" height="100"
-					x="-70" y="35"
-					>
-					<image xlink:href="images/fire.gif" width="256" height="300"/>
-				</pattern>
-			</defs>
-			<text text-anchor="middle"
-					x="50%"
-					y="50%"
-					dy=".35em"
-					class="text"
-					fill="url(#p-fire)"
-					stroke-width="1"
-  					stroke="#1D4259"
-					>
-				Text
-			</text>
-		</svg>
+      <svg viewBox="0 0 300 150">
+        <defs>
+          <pattern id="p-fire" viewBox="30 100 185 200" patternUnits="userSpaceOnUse" width="108" height="100" x="-70"
+            y="35">
+            <image xlink:href="images/fire.gif" width="256" height="300" />
+          </pattern>
+        </defs>
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="url(#p-fire)" stroke-width="1" stroke="#1D4259">
+          Text
+        </text>
+      </svg>
     </div>
     <div>
-    	<svg viewBox="0 0 300 150">
-			  <!-- Pattern -->
-			  <pattern
-					   id="p-spots"
-					   width="50"
-					   height="50"
-					   viewBox="0 0 90 90"
-					   patternUnits="userSpaceOnUse"
-					   >
-				<g class="g-spots">
-					<ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
-					<ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="10" cx="50" cy="50" ></ellipse>
-					<ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
-				</g>
-				<g class="g-spots" transform="translate(45,45)">
-					<ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
-					<ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
-					<ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
-				</g>
-				<g class="g-spots" transform="translate(-45,45)">
-					<ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
-					<ellipse rx="25" ry="20" cx="50" cy="50" ></ellipse>
-					<ellipse rx="15" ry="20" cx="50" cy="50" ></ellipse>
-					<ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
-					<ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
-				</g>
-				<g class="g-spots" transform="translate(-45,-45)">
-					<ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
-					<ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
-					<ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
-				</g>
-				<g class="g-spots" transform="translate(45,-45)">
-					<ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
-					<ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
-					<ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
-					<ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
-				</g>
-			  </pattern>
-			  <!-- Text -->
-			  <text text-anchor="middle"
-					x="50%"
-					y="50%"
-					dy=".35em"
-					class="text"
-					fill="none"
-					stroke="url(#p-spots)"
-					stroke-width="2"
-					stroke-linejoin="round"
-					>
-				Text
-			  </text>
-		</svg>
+      <svg viewBox="0 0 300 150">
+        <!-- Pattern -->
+        <pattern id="p-spots" width="50" height="50" viewBox="0 0 90 90" patternUnits="userSpaceOnUse">
+          <g class="g-spots">
+            <ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
+            <ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
+            <ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
+          </g>
+          <g class="g-spots" transform="translate(45,45)">
+            <ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
+            <ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
+            <ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
+          </g>
+          <g class="g-spots" transform="translate(-45,45)">
+            <ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
+            <ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
+            <ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
+          </g>
+          <g class="g-spots" transform="translate(-45,-45)">
+            <ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
+            <ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
+            <ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
+          </g>
+          <g class="g-spots" transform="translate(45,-45)">
+            <ellipse rx="25" ry="35" cx="50" cy="50"></ellipse>
+            <ellipse rx="25" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="20" cx="50" cy="50"></ellipse>
+            <ellipse rx="15" ry="10" cx="50" cy="50"></ellipse>
+            <ellipse rx="5" ry="10" cx="50" cy="50"></ellipse>
+          </g>
+        </pattern>
+        <!-- Text -->
+        <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text" fill="none" stroke="url(#p-spots)"
+          stroke-width="2" stroke-linejoin="round">
+          Text
+        </text>
+      </svg>
     </div>
-</div>
+  </div>
 </body>
+
 </html>

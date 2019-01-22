@@ -15,16 +15,15 @@ function getLocation(){
 	    document.getElementById("locationDate").innerHTML="对不起，您浏览器不支持地理定位";
 	}
 	function displayLocation(position){
-	    	 var latitude=position.coords.latitude;//纬度
-		     var longitude=position.coords.longitude;//经度
-			 var displayText="纬度："+latitude+"  "+"经度："+longitude;
-			 document.getElementById("locationDate").innerHTML=displayText;
+		var latitude = position.coords.latitude;//纬度
+		var longitude = position.coords.longitude;//经度
+		var displayText = "纬度：" + latitude + "  " + "经度：" + longitude;
+		document.getElementById("locationDate").innerHTML = displayText;
 	}  
 	function displayError(error){
-	         var locationElement=document.getElementById("locationDate");	
-			 locationElement.innerHTML="产生了错误";
+		var locationElement = document.getElementById("locationDate");	
+		locationElement.innerHTML="产生了错误";
 	}
-
 }
 </script>
 </head>

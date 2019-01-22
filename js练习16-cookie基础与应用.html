@@ -1,50 +1,53 @@
 <!doctype html>
 <html lang="en">
- <head>
+
+<head>
   <meta charset="UTF-8">
   <title>cookie基础与应用</title>
- <script>
- function setCookie(name, value, expireTime) {
-   let expireDate = new Date();
-   
-   if (expireTime) {
-     expireDate = new Date(+new Date() + expireTime);
-   }
+  <script>
+    function setCookie(name, value, expireTime) {
+      let expireDate = new Date();
 
-   document.cookie = name + "=" + escape(value) + ((expireTime === null) ? "" : ";expires=" + expireDate.toUTCString());
- }
-	 
- function getCookie(name: string): string | null {
-   if (document.cookie.length === 0) {
-     return null;
-   }
+      if (expireTime) {
+        expireDate = new Date(+new Date() + expireTime);
+      }
 
-   let start = document.cookie.indexOf(`${name}=`);
+      document.cookie = name + "=" + escape(value) + ((expireTime === null) ? "" : ";expires=" + expireDate.toUTCString());
+    }
 
-   if (start === -1) {
-     return null;
-   }
+    function getCookie(name: string): string | null {
+      if (document.cookie.length === 0) {
+        return null;
+      }
 
-   start = start + name.length + 1;
-   let end = document.cookie.indexOf(';', start);
+      let start = document.cookie.indexOf(`${name}=`);
 
-   if (end === -1) {
-     end = document.cookie.length;
-   }
+      if (start === -1) {
+        return null;
+      }
 
-   return unescape(document.cookie.substring(start, end));
- }
- function removeCookie() {
-   setCookie(name,1,-1);//日期设置为-1，表示已过期
- }
+      start = start + name.length + 1;
+      let end = document.cookie.indexOf(';', start);
 
- setCookie('username', 'chacha', 1000 * 60);
- setCookie('password', '123456', 1000 * 60);
+      if (end === -1) {
+        end = document.cookie.length;
+      }
 
- alert(document.cookie);
+      return unescape(document.cookie.substring(start, end));
+    }
 
- </script>
- </head>
- <body>
- </body>
+    function removeCookie() {
+      setCookie(name, 1, -1); //日期设置为-1，表示已过期
+    }
+
+    setCookie('username', 'chacha', 1000 * 60);
+    setCookie('password', '123456', 1000 * 60);
+
+    alert(document.cookie);
+  </script>
+</head>
+
+<body>
+</body>
+
 </html>

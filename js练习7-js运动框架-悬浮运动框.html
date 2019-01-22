@@ -1,43 +1,57 @@
 <!doctype html>
- <head>
-  <meta charset="UTF-8">
-  <title>js运动框架-悬浮运动框</title>
-   <style>
-  *{margin:0px;padding:0px;}
- #div{width:100px;height:150px;border:2px black solid;background:brown;position:absolute;right:0px;bottom:0px;}
- </style>
- <script>
- window.onscroll=window.onresize=function()
- {
-     var oDiv=document.getElementById('div');
-     var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
 
-	 oDiv.style.top=(document.documentElement.clientHeight-oDiv.offsetHeight)/2+scrollTop+'px';//让div一直保持在窗口中间的位置。
-	 startMove((document.documentElement.clientHeight-oDiv.offsetHeight)/2+scrollTop+'px');
- };
- var timer=null;
- function startMove(iTarget)
- {
-     var oDiv=document.getElementById('div');
+<head>
+	<meta charset="UTF-8">
+	<title>js运动框架-悬浮运动框</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
 
-	 clearInterval(timer);
-	 timer=setInterval(function(){
-	     var speed=(iTarget-oDiv.offsetTop)/1000;
-		 speed=speed>0?Math.ceil(speed):Math.floor(speed);//速度取整。
-		 if (oDiv.offsetTop==speed)
-		 {
-			 clearInterval(timer);
-		 }
-		 else
-		 {
-		     oDiv.style.top=oDiv.offsetTop+speed+'px';
-		 }
-	 
-	 },30);
-}
- </script>
- </head>
- <body style="height:2000px">
- <div id="div"><span><h2>Hey!</h2><h1>Hello!</h1></span></div> 
- </body>
+		#div {
+			width: 100px;
+			height: 150px;
+			border: 2px black solid;
+			background: brown;
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
+		}
+	</style>
+	<script>
+		window.onscroll = window.onresize = function () {
+			var oDiv = document.getElementById('div');
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+			oDiv.style.top = (document.documentElement.clientHeight - oDiv.offsetHeight) / 2 + scrollTop + 'px'; //让div一直保持在窗口中间的位置。
+			startMove((document.documentElement.clientHeight - oDiv.offsetHeight) / 2 + scrollTop + 'px');
+		};
+		var timer = null;
+
+		function startMove(iTarget) {
+			var oDiv = document.getElementById('div');
+
+			clearInterval(timer);
+			timer = setInterval(function () {
+				var speed = (iTarget - oDiv.offsetTop) / 1000;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed); //速度取整。
+				if (oDiv.offsetTop == speed) {
+					clearInterval(timer);
+				} else {
+					oDiv.style.top = oDiv.offsetTop + speed + 'px';
+				}
+
+			}, 30);
+		}
+	</script>
+</head>
+
+<body style="height:2000px">
+	<div id="div"><span>
+			<h2>Hey!</h2>
+			<h1>Hello!</h1>
+		</span></div>
+</body>
+
 </html>

@@ -1,30 +1,29 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>定时器的使用</title>
-<script>
-window.onload=function()
-{
-	var oBtn1=document.getElementById('btn1');
-	var oBtn2=document.getElementById('btn2');
-	var timer=null;
-	oBtn1.onclick=function()
-	{
-		timer=setInterval(function()
-		{
-			alert('Hello!');
-		},3000);//单位为毫秒
-	};
-	oBtn2.onclick=function()
-	{
-		clearInterval(timer);//结束timer这个函数
-	};
-};
-</script>
+	<meta charset="utf-8">
+	<title>定时器的使用</title>
+	<script>
+		window.onload = function () {
+			var oBtn1 = document.getElementById('btn1');
+			var oBtn2 = document.getElementById('btn2');
+			var timer = null;
+			oBtn1.onclick = function () {
+				timer = setInterval(function () {
+					alert('Hello!');
+				}, 3000); //单位为毫秒
+			};
+			oBtn2.onclick = function () {
+				clearInterval(timer); //结束timer这个函数
+			};
+		};
+	</script>
 </head>
+
 <body>
-<button id="btn1">开启定时器</button>
-<button id="btn2">关闭定时器</button>
+	<button id="btn1">开启定时器</button>
+	<button id="btn2">关闭定时器</button>
 </body>
+
 </html>

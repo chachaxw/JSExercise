@@ -1,40 +1,54 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="chacha">
-  <meta name="Keywords" content="chacha">
-  <meta name="Description" content="chacha">
-  <title>延时提示框</title>
-  <style>
-  #div1{width:25px; height:25px;background-color:#0CF;float:left;}
-  #div2{width:100px;height:100px;margin-left:4px;background-color:#930;float:left;display:none;}
-  </style>
-  <script>
-  window.onload=function()
-  {
-	  var oDiv1=document.getElementById('div1');
-	  var oDiv2=document.getElementById('div2');
-	  var timer=null;
-	  oDiv1.onmouseover=oDiv2.onmouseover=function()
-	  {
-		  clearTimeout(timer);//作用是关掉延时器
-		  oDiv2.style.display='block';
-	  };
-	  oDiv1.onmouseout=oDiv2.onmouseout=function()
-	  {
-	      timer=setTimeout(
-		  function()
-		  {
-			  oDiv2.style.display='none';
-		  },500);//时间是500毫秒
-	  };
-  };
-  </script>
- </head>
- <body>
- <div id='div1' ></div> 
- <div id='div2' ><h1>hello!</h1></div> 
- </body>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="chacha">
+	<meta name="Keywords" content="chacha">
+	<meta name="Description" content="chacha">
+	<title>延时提示框</title>
+	<style>
+		#div1 {
+			width: 25px;
+			height: 25px;
+			background-color: #0CF;
+			float: left;
+		}
+
+		#div2 {
+			width: 100px;
+			height: 100px;
+			margin-left: 4px;
+			background-color: #930;
+			float: left;
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var oDiv1 = document.getElementById('div1');
+			var oDiv2 = document.getElementById('div2');
+			var timer = null;
+			oDiv1.onmouseover = oDiv2.onmouseover = function () {
+				clearTimeout(timer); //作用是关掉延时器
+				oDiv2.style.display = 'block';
+			};
+			oDiv1.onmouseout = oDiv2.onmouseout = function () {
+				timer = setTimeout(
+					function () {
+						oDiv2.style.display = 'none';
+					}, 500); //时间是500毫秒
+			};
+		};
+	</script>
+</head>
+
+<body>
+	<div id='div1'></div>
+	<div id='div2'>
+		<h1>hello!</h1>
+	</div>
+</body>
+
 </html>

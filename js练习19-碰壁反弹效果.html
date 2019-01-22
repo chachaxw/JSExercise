@@ -1,111 +1,140 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>js练习19-碰壁反弹效果</title>
-<style type="text/css">
-        body{background: url(images/oavv3DC.jpg) repeat}
-		#wrap{height: 500px;width: 800px;border: 4px solid #930;position: relative;margin:50px auto}
-		#child{height: 50px;width: 50px;position: absolute;background: #09f;border-radius: 100%; left: 0px;}
-		#div1{width: 150px;height: 300px;background: #cc3;position: relative;top: 200px;left: 180px;}
-		#div2{width: 200px;height: 200px;background: #c33;position: relative;top: -300px;left: 600px; }
+	<meta charset="utf-8">
+	<title>js练习19-碰壁反弹效果</title>
+	<style type="text/css">
+		body {
+			background: url(images/oavv3DC.jpg) repeat
+		}
+
+		#wrap {
+			height: 500px;
+			width: 800px;
+			border: 4px solid #930;
+			position: relative;
+			margin: 50px auto
+		}
+
+		#child {
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			background: #09f;
+			border-radius: 100%;
+			left: 0px;
+		}
+
+		#div1 {
+			width: 150px;
+			height: 300px;
+			background: #cc3;
+			position: relative;
+			top: 200px;
+			left: 180px;
+		}
+
+		#div2 {
+			width: 200px;
+			height: 200px;
+			background: #c33;
+			position: relative;
+			top: -300px;
+			left: 600px;
+		}
 	</style>
-<script type="text/javascript">
-window.onload=function(){
-	var oWrap=document.getElementById('wrap'),
-	    oChild=document.getElementById('child'),
-		oDiv1=document.getElementById('div1'),
-		oDiv2=document.getElementById('div2');
-		
-    var maxLeft=oWrap.clientWidth-oChild.offsetWidth,
-	    maxTop=oWrap.clientHeight-oChild.offsetHeight,
-	    startX=0,
-	    startY=0,
-		x=1,
-	    y=1;
-	var left=oDiv1.offsetLeft-oChild.offsetWidth,
-	    right=oDiv1.offsetLeft+oDiv1.offsetWidth,
-	    top=oDiv1.offsetTop-oChild.offsetHeight,
-		bottom=maxTop;
-	var left2=oDiv2.offsetLeft-oChild.offsetWidth,
-	    bottom2=oDiv2.offsetHeight;
-	
-	function random(min,range){return Math.floor(Math.random()*range+min);}
-	
-	function bg(){
-		var a=random(0,255),
-		    b=random(0,255),
-			c=random(0,255);
-		oChild.style.background='rgba('+a+','+b+','+c+',0.8)';
-		//setTimeout(bg,1000);
+	<script type="text/javascript">
+		window.onload = function () {
+			var oWrap = document.getElementById('wrap'),
+				oChild = document.getElementById('child'),
+				oDiv1 = document.getElementById('div1'),
+				oDiv2 = document.getElementById('div2');
+
+			var maxLeft = oWrap.clientWidth - oChild.offsetWidth,
+				maxTop = oWrap.clientHeight - oChild.offsetHeight,
+				startX = 0,
+				startY = 0,
+				x = 1,
+				y = 1;
+			var left = oDiv1.offsetLeft - oChild.offsetWidth,
+				right = oDiv1.offsetLeft + oDiv1.offsetWidth,
+				top = oDiv1.offsetTop - oChild.offsetHeight,
+				bottom = maxTop;
+			var left2 = oDiv2.offsetLeft - oChild.offsetWidth,
+				bottom2 = oDiv2.offsetHeight;
+
+			function random(min, range) {
+				return Math.floor(Math.random() * range + min);
+			}
+
+			function bg() {
+				var a = random(0, 255),
+					b = random(0, 255),
+					c = random(0, 255);
+				oChild.style.background = 'rgba(' + a + ',' + b + ',' + c + ',0.8)';
+				//setTimeout(bg,1000);
+			}
+
+			var timer = setInterval(function () {
+				//边线
+				if (startX > maxLeft || startX < 0) {
+					x *= -1;
+					bg();
+				}
+				if (startY > maxTop || startY < 0) {
+					y *= -1;
+					bg();
+				}
+				//障碍物div1
+				if (startX == left && startY > top) {
+					x *= -1;
+					bg();
+				}
+				if (startY == top && startX > left && startX < right) {
+					y *= -1;
+					bg();
+				}
+				if (startX == right && startY > top) {
+					x *= -1;
+					bg();
+				}
+				//障碍物div2
+				if (startX == left2 && startY < bottom2) {
+					x *= -1;
+					bg();
+				}
+				if (startY == bottom2 && startX > left2) {
+					y *= -1;
+					bg();
+				}
+				if (startX == 200 && startY == 200) {
+					x *= -1;
+					y *= -1;
+					bg();
+				}
+				if (startX == 300 && startY == 200) {
+					x *= -1;
+					y *= -1;
+					bg();
+				}
+
+				startX += x * 5;
+				startY += y * 5;
+				oChild.style.left = startX + 'px';
+				oChild.style.top = startY + 'px';
+
+			}, 30);
 		}
-	
-	var timer=setInterval(function(){
-		//边线
-		if(startX>maxLeft || startX<0)
-		{
-		    x*=-1;
-			bg();	
-		}
-		if(startY>maxTop || startY<0)
-		{
-		    y*=-1;	
-			bg();
-		}
-		//障碍物div1
-		if(startX==left && startY>top)
-		{
-		    x*=-1;
-			bg();	
-		}
-		if(startY==top && startX>left && startX<right)
-		{
-		    y*=-1;
-			bg();	
-		}
-		if(startX==right && startY>top)
-		{
-		    x*=-1;
-			bg();	
-		}
-		//障碍物div2
-		if(startX==left2 && startY<bottom2)
-		{
-		    x*=-1;
-			bg();	
-		}
-		if(startY==bottom2 && startX>left2)
-		{
-		    y*=-1;
-			bg();	
-		}
-		if(startX==200&&startY==200)
-		{
-		    x*=-1;
-			y*=-1;
-			bg();	
-		}
-		if(startX==300&&startY==200)
-		{
-		    x*=-1;
-			y*=-1;
-			bg();	
-		}
-		
-		startX+=x*5;
-		startY+=y*5;
-		oChild.style.left=startX+'px';
-		oChild.style.top=startY+'px';
-		
-		},30);
-	}
-</script>
+	</script>
 </head>
+
 <body>
-<div id="wrap">
-    <div id="child"></div>
-    <div id="div1"></div>
-    <div id="div2"></div>
-</div>
+	<div id="wrap">
+		<div id="child"></div>
+		<div id="div1"></div>
+		<div id="div2"></div>
+	</div>
 </body>
+
 </html>

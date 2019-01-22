@@ -1,31 +1,36 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>弹出更新窗口</title>
-  <style>
-    #btn{width:100px;height:50px;background:#333}
-  </style>
- <script>
- window.onload=function()
- {
-	var oBtn=document.getElementById('btn');
-    oBtn.onclick=function()
-	{
-	    var whatsNew = open('','_blank','top=50,left=50,width=200,height=300,'
-                   +'menubar=no,toolbar=no,directories=no,location=no,' +
-                   'status=no,resizable=no,scrollbars=no');
-        whatsNew.document.write('<center><b>更新通知</b></center>');
-        whatsNew.document.write('<p>最后更新日期：00.08.01');
-        whatsNew.document.write('<p>00.09.01：增加了“我的最爱”栏目。');
-        whatsNew.document.write('<p align="right">' +
-        '<a href="javascript:self.close()">关闭窗口</a>');
-        whatsNew.document.close();
-	}
- }
- </script>
- </head>
- <body>
- <button id="btn" value="弹出窗口">弹出窗口</button> 
- </body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>弹出更新窗口</title>
+    <style>
+        #btn {
+            width: 100px;
+            height: 50px;
+            background: #333
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function () {
+                var whatsNew = open('', '_blank', 'top=50,left=50,width=200,height=300,' +
+                    'menubar=no,toolbar=no,directories=no,location=no,' +
+                    'status=no,resizable=no,scrollbars=no');
+                whatsNew.document.write('<center><b>更新通知</b></center>');
+                whatsNew.document.write('<p>最后更新日期：00.08.01');
+                whatsNew.document.write('<p>00.09.01：增加了“我的最爱”栏目。');
+                whatsNew.document.write('<p align="right">' +
+                    '<a href="javascript:self.close()">关闭窗口</a>');
+                whatsNew.document.close();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn" value="弹出窗口">弹出窗口</button>
+</body>
+
 </html>
