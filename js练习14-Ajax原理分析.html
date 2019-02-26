@@ -27,7 +27,7 @@
 					if (oAjax.readyState === 4) {
 						if (oAjax.status === 200) //代表连接成功
 						{
-							fnsucc(oAjax.responseText);
+							console.log(oAjax.responseText);
 						} else {
 							alert('失败:' + oAjax.status);
 						}

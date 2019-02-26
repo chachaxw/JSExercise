@@ -15,7 +15,7 @@
       document.cookie = name + "=" + escape(value) + ((expireTime === null) ? "" : ";expires=" + expireDate.toUTCString());
     }
 
-    function getCookie(name: string): string | null {
+    function getCookie(name) {
       if (document.cookie.length === 0) {
         return null;
       }

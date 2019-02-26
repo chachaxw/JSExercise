@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Javascript 面试算法题</title>
+</head>
+
+<body>
+  Javascript 面试算法题
+</body>
+<script>
+  /**
+  * 说明：给定一个编码字符，按编码规则进行解码，输出字符串
+  *     编码规则是`count[letter]`，将letter的内容count次输出，count是0或正整数，letter是区分大小写的纯字母
+  * 示例：
+  * const s = '3[a]2[bc]'; decodeString(s); // 返回'aaabcbc'
+  * const s = '3[a2[c]]'; decodeString(s); // 返回'accaccacc'
+  * const s = '2[abc]3[cd]ef'; decodeString(s); // 返回'abcabccdcdcdef'
+  */
+
+  function decodeString(str) {
+    /* 功能实现 */  
+    var reg = /(\d?)(\[[a-z]+\])/g;
+
+    if (!str.match(reg)) return str;
+
+    str = str.replace(reg, function(match, p1, p2) {
+      var letter = '';
+
+      if (!p1) {
+        p1 = 1;
+      }
+
+      if (/\d/.test(p1)) {
+        for (var i = 0; i < parseInt(p1); i++) {
+          p2 = p2.replace('[', '').replace(']', '');
+          letter += p2;
+        }
+      }
+
+      return letter;
+    });
+
+    return decodeString(str);
+  };
+
+  /**
+  * 说明：简单实现一个事件订阅机制，具有监听on和触发emit方法， off取消绑定
+  * 示例：
+  * const event = new EventEmitter();
+  * event.on('someEvent', (...args) => { 
+  *     console.log('some_event triggered', ...args);
+  * }); 
+  * event.emit('someEvent', 'abc', '123'); 
+  */
+  function EventEmitter() {}
+
+  /* 功能实现 */
+  EventEmitter.prototype.on = function(eventName, callback) {
+    if (!this.handles) {
+        this.handles = {};
+    }
+
+    if (!this.handles[eventName]) {
+        this.handles[eventName] = [];
+    }
+
+    this.handles[eventName].push(callback);
+  }
+
+  EventEmitter.prototype.emit = function(eventName, ...args) {
+    if (!this.handles[eventName]) {
+        return;
+    }
+
+    this.handles[eventName].forEach(function(callback) {
+        callback(...args);
+    });
+  }
+
+  EventEmitter.prototype.off = function(eventName) {
+    if (!this.handles[eventName]) {
+        return;
+    }
+
+    this.handles[eventName] = [];
+  }
+
+  /**
+  * 说明：获取一个数字数组中的最大值
+  * 示例：
+  * 输入：[1, 5, 3, 9, 2, 7]
+  * 输出：9
+  */
+
+  function getMaxFromArray(arr) {
+    /* 功能实现 */
+    if (!Array.isArray(arr)) return;
+
+    var max = arr[0];
+    arr.forEach(function(item) {
+        if (max < item) {
+            max = item;
+        }
+    })
+
+    return max;
+  }
+
+  /**
+  * 说明：计算多个区间的交集。
+  *   区间用长度为2的数字数组表示，如[2, 5]表示区间2到5（包括2和5）；
+  *   区间不限定方向，如[5, 2]等同于[2, 5]；
+  *   实现`getIntersection`，可接收多个区间，并返回所有区间的交集（用区间表示），如空集用null表示
+  * 示例：
+  *   getIntersection([5, 2], [4, 9], [3, 6]); // [4, 5]
+  *   getIntersection([1, 7], [8, 9]); // null
+  */
+  function getIntersection() {
+    /* 代码实现 */
+    var args = Array.prototype.slice.call(arguments);
+
+    var min, max;
+
+    for (var i = 0; i < args.length; i++) {
+      if (args[i][0] > min) {
+        min = args[i][0];
+      }
+
+      if (args[i][1] < max) {
+        max = args[i][1];
+      }
+    }
+
+    return min < max ? [min, max] : null;
+  }
+
+
+  /**
+  * 说明：实现一个方法，用于比较两个版本号（version1、version2）
+  *     如果version1 > version2，返回1；如果version1 < version2，返回-1，其他情况返回0
+  *     版本号规则`x.y.z`，xyz均为大于等于0的整数，至少有x位
+  * 示例：
+  * compareVersion('0.1', '1.1.1'); // 返回-1
+  * compareVersion('13.37', '1.2 '); // 返回1
+  * compareVersion('1.1', '1.1.0'); // 返回0
+  */
+
+  function compareVersion(version1, version2) {
+    /* 功能实现 */
+    var v1 = version1.split('.');
+    var v2 = version2.split('.');
+
+    var length = Math.max(v1.length, v2.length);
+
+    for (var i = 0; i < length; i++) {
+        var num1 = i < v1.length ? Number(v1[i]) : 0;
+        var num2 = i < v2.length ? Number(v2[i]) : 0;
+
+        var n = num1 - num2
+
+        if (n < 0) {
+            return -1;
+        } else if (n > 0) {
+            return 1;
+        }
+    }
+
+    return 0;
+  } 
+</script>
+</html>
