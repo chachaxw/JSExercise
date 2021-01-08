@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  Javascript 面试算法题
+  <h1 style="text-align: center;">Javascript 面试算法题</h1>
 </body>
 <script>
   /**
@@ -146,7 +146,6 @@
   * compareVersion('13.37', '1.2 '); // 返回1
   * compareVersion('1.1', '1.1.0'); // 返回0
   */
-
   function compareVersion(version1, version2) {
     /* 功能实现 */
     var v1 = version1.split('.');
@@ -169,5 +168,22 @@
 
     return 0;
   } 
+</script>
+<script>
+  window.onload = function () {
+    // console.log(getIntersection([5, 2], [4, 9], [3, 6]));
+
+    const event = new EventEmitter();
+
+    event.on('someEvent', (...args) => { 
+      console.log('触发了someEvent事件1', ...args);
+    });
+
+    event.on('someEvent', (...args) => { 
+      console.log('触发了someEvent事件2', ...args);
+    });
+
+    event.emit('someEvent', 'abcd', '1234');
+  }
 </script>
 </html>
