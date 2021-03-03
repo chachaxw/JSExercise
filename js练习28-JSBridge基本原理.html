@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JSBridge基本原理</title>
+  </head>
+  <body>
+    <h2 style="text-align: center">JSBridge基本原理</h2>
+  </body>
+  <script>
+    (function () {
+      var id = 0,
+        callbacks = {},
+        registerFuncs = {};
+
+      window.JSBridge = {
+        // 调用Native
+        invoke: function (bridgeName, callback, data) {
+          var _id = id++;
+          callbacks[_id] = callback;
+
+          // 判断环境，获取不同的 nativeBridge
+          nativeBridge.postMessage({
+            bridgeName: bridgeName,
+            data: data || {},
+            callbackId: _id,
+          });
+        },
+
+        receiveMessage: function (msg) {
+          var bridgeName = msg.bridgeName,
+            data = msg.data || {};
+        },
+
+        register: function (bridgeName, callback) {
+          if (!registerFuncs[bridgeName]) {
+            registerFuncs[bridgeName] = [];
+          }
+          registerFuncs[bridgeName].push(callback);
+        },
+      };
+    })();
+  </script>
+</html>
